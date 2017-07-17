@@ -1,0 +1,96 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+android {
+  compileSdkVersion 25
+  buildToolsVersion "25.0.3"
+  defaultConfig {
+    applicationId "com.okbreathe.quasar"
+    minSdkVersion 21
+    targetSdkVersion 25
+    multiDexEnabled true
+    versionCode 1
+    versionName "1.0"
+    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+  }
+  buildTypes {
+    release {
+      minifyEnabled false
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+    }
+  }
+}
+
+dependencies {
+  compile fileTree(dir: 'libs', include: ['*.jar'])
+  androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
+    exclude group: 'com.android.support', module: 'support-annotations'
+  })
+  // API
+  compile "com.squareup.retrofit2:retrofit:$retrofit_version"
+  compile "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+  compile "com.squareup.retrofit2:converter-moshi:$retrofit_version"
+  compile 'moe.banana:moshi-jsonapi:3.2.2'
+  // Anko
+  compile "org.jetbrains.anko:anko-sdk25:$anko_version"
+  compile "org.jetbrains.anko:anko-sdk25-listeners:$anko_version"
+  compile "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+  compile "org.jetbrains.anko:anko-design:$anko_version"
+  compile "org.jetbrains.anko:anko-recyclerview-v7:$anko_version"
+  // Requery
+  compile "com.github.requery.requery:requery:$requery_sha"
+  compile "com.github.requery.requery:requery-kotlin:$requery_sha"
+  compile "com.github.requery.requery:requery-android:$requery_sha"
+  kapt "com.github.requery.requery:requery-processor:$requery_sha"
+  annotationProcessor "com.github.requery.requery:requery-processor:$requery_sha"
+  // Kotlin
+  compile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  testCompile "org.jetbrains.kotlin:kotlin-stdlib-jre7:$kotlin_version"
+  // ReactiveX
+  compile "io.reactivex.rxjava2:rxjava:$rxjava2_version"
+  compile 'io.reactivex.rxjava2:rxandroid:2.0.1'
+  compile 'io.reactivex.rxjava2:rxkotlin:2.0.0'
+  compile 'com.jakewharton.rxbinding2:rxbinding-kotlin:2.0.0'
+  compile 'com.jakewharton.rxbinding2:rxbinding-support-v4-kotlin:2.0.0'
+  compile 'com.jakewharton.rxbinding2:rxbinding-appcompat-v7-kotlin:2.0.0'
+  compile 'com.jakewharton.rxbinding2:rxbinding-design-kotlin:2.0.0'
+  compile 'com.jakewharton.rxbinding2:rxbinding-recyclerview-v7-kotlin:2.0.0'
+  // Components
+  compile 'com.github.exitface:codeview-android:12cf0cdd29'
+  compile 'com.android.support:appcompat-v7:25.3.1'
+  compile 'com.android.support:design:25.3.1'
+  compile 'com.android.support:recyclerview-v7:25.3.1'
+  compile 'com.android.support.constraint:constraint-layout:1.0.2'
+  compile 'com.android.support:support-v4:25.3.1'
+  compile 'co.zsmb:materialdrawer-kt:1.0.3'
+  compile 'com.facebook.fresco:fresco:1.3.0'
+  compile 'com.facebook.fresco:animated-gif:1.3.0'
+  compile "im.ene.toro2:toro-extended:$toroVersion"
+  // Commonmark
+  compile "com.atlassian.commonmark:commonmark:$commonmarkVersion"
+  compile "com.atlassian.commonmark:commonmark-ext-gfm-tables:$commonmarkVersion"
+  compile "com.atlassian.commonmark:commonmark-ext-ins:$commonmarkVersion"
+  compile "com.atlassian.commonmark:commonmark-ext-autolink:$commonmarkVersion"
+  compile "com.atlassian.commonmark:commonmark-ext-gfm-strikethrough:$commonmarkVersion"
+  compile "com.github.Doist:commonmark-spannable-android:master"
+  // Dev and test
+  testCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+  testCompile 'junit:junit:4.12'
+  testCompile 'org.jetbrains.spek:spek-api:1.1.2'
+  testCompile 'org.jetbrains.spek:spek-junit-platform-engine:1.1.2'
+  testCompile 'org.junit.platform:junit-platform-runner:1.0.0-M4'
+  debugCompile 'com.squareup.leakcanary:leakcanary-android:1.5.1'
+  releaseCompile 'com.squareup.leakcanary:leakcanary-android-no-op:1.5.1'
+}
+
+repositories {
+  mavenCentral()
+  maven { url "https://jitpack.io" }
+  maven { url "https://s3.amazonaws.com/repo.commonsware.com" }
+  maven { url "http://dl.bintray.com/jetbrains/spek" }
+  jcenter()
+}
+
+

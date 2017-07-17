@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item name="fragmentContainer" type="id" />
+    <item name="newPage" type="id" />
+    <item name="pageTags" type="id" />
+    <item name="pageTitle" type="id" />
+    <item name="pageContent" type="id" />
+    <item name="pageSave" type="id" />
+    <item name="pageDetailViewPager" type="id" />
+</resources>

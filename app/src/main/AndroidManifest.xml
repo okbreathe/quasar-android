@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+          package="com.okbreathe.quasar">
+
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.READ_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.WRITE_SYNC_SETTINGS"/>
+    <uses-permission android:name="android.permission.AUTHENTICATE_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.GET_ACCOUNTS"/>
+    <uses-permission android:name="android.permission.MANAGE_ACCOUNTS"/>
+
+    <!-- http://stackoverflow.com/questions/25230554/how-to-restrict-app-to-android-phones-only -->
+    <!-- https://stackoverflow.com/questions/39834843/compatible-screens-in-android -->
+    <compatible-screens>
+
+        <!-- all small size screens -->
+        <screen
+                android:screenDensity="ldpi"
+                android:screenSize="small"/> <!-- 120 -->
+        <screen
+                android:screenDensity="mdpi"
+                android:screenSize="small"/> <!-- 160 -->
+        <screen
+                android:screenDensity="hdpi"
+                android:screenSize="small"/> <!-- 240 -->
+        <screen
+                android:screenDensity="280"
+                android:screenSize="small"/> <!-- Workaround -->
+        <screen
+                android:screenDensity="xhdpi"
+                android:screenSize="small"/> <!-- 320 -->
+        <screen
+                android:screenDensity="360"
+                android:screenSize="small"/> <!-- Workaround -->
+        <screen
+                android:screenDensity="420"
+                android:screenSize="small"/> <!-- Workaround Google Pixel, Nexus 5x -->
+        <screen
+                android:screenDensity="xxhdpi"
+                android:screenSize="small"/> <!-- 480 -->
+        <screen
+                android:screenDensity="560"
+                android:screenSize="small"/> <!-- Workaround Google Pixel XL, Nexus 6, Nexus 6P -->
+        <screen
+                android:screenDensity="xxxhdpi"
+                android:screenSize="small"/> <!-- 640 -->
+        <!-- all normal size screens -->
+        <screen
+                android:screenDensity="ldpi"
+                android:screenSize="normal"/> <!-- 120 -->
+        <screen
+                android:screenDensity="mdpi"
+                android:screenSize="normal"/> <!-- 160 -->
+        <screen
+                android:screenDensity="hdpi"
+                android:screenSize="normal"/> <!-- 240 -->
+        <screen
+                android:screenDensity="280"
+                android:screenSize="normal"/> <!-- Workaround -->
+        <screen
+                android:screenDensity="xhdpi"
+                android:screenSize="normal"/> <!-- 320 -->
+        <screen
+                android:screenDensity="360"
+                android:screenSize="normal"/> <!-- Workaround -->
+        <screen
+                android:screenDensity="420"
+                android:screenSize="normal"/> <!-- Workaround Google Pixel, Nexus 5x -->
+        <screen
+                android:screenDensity="xxhdpi"
+                android:screenSize="normal"/> <!-- 480 -->
+        <screen
+                android:screenDensity="560"
+                android:screenSize="normal"/> <!-- Workaround Google Pixel XL, Nexus 6, Nexus 6P -->
+        <screen
+                android:screenDensity="xxxhdpi"
+                android:screenSize="normal"/> <!-- 640 -->
+    </compatible-screens>
+
+    <application
+            android:name=".Application"
+            android:allowBackup="true"
+            android:icon="@mipmap/ic_launcher"
+            android:label="@string/app_name"
+            android:roundIcon="@mipmap/ic_launcher_round"
+            android:supportsRtl="true"
+            android:theme="@style/AppTheme">
+        <activity android:name=".ui.pages.PageActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"/>
+
+                <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+        </activity>
+        <activity
+                android:name=".ui.settings.SettingsActivity"
+                android:label="@string/title_activity_settings">
+        </activity>
+        <activity
+                android:name=".ui.accounts.LoginActivity"
+                android:label="@string/title_activity_account_authenticator">
+        </activity>
+        <!-- Authenticator related service -->
+        <service android:name=".sync.AuthenticatorService">
+            <intent-filter>
+                <action android:name="android.accounts.AccountAuthenticator"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.accounts.AccountAuthenticator"
+                    android:resource="@xml/authenticator"/>
+        </service>
+        <!-- Sync adapter related service -->
+        <service
+                android:name=".sync.SyncService"
+                android:exported="true">
+
+            <!-- Can't see log if set -->
+            <!-- android:process=":syncRemote" -->
+            <intent-filter>
+                <action android:name="android.content.SyncAdapter"/>
+            </intent-filter>
+
+            <meta-data
+                    android:name="android.content.SyncAdapter"
+                    android:resource="@xml/syncadapter"/>
+        </service>
+
+        <provider
+                android:name=".sync.StubContentProvider"
+                android:authorities="com.okbreathe.quasar.datasync.provider"
+                android:exported="false"
+                android:syncable="true"/>
+    </application>
+
+</manifest>

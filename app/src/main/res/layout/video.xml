@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+             xmlns:app="http://schemas.android.com/apk/res-auto"
+             android:layout_width="match_parent"
+             android:layout_height="wrap_content"
+             android:layout_margin="0dp"
+             android:background="#20000000"
+             android:padding="0dp"
+>
+    <!-- android:descendantFocusability="blocksDescendants" is added to pass click event down to children -->
+    <im.ene.toro.exoplayer2.ExoPlayerView
+            android:id="@+id/video"
+            android:descendantFocusability="blocksDescendants"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="192dip"
+            android:layout_gravity="center"
+            app:resize_mode="fixed_width"
+            app:use_artwork="true"
+            app:use_controller="true">
+    </im.ene.toro.exoplayer2.ExoPlayerView>
+</FrameLayout>

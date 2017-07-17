@@ -1,0 +1,29 @@
+<PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <EditTextPreference
+            android:key="@string/preference_sync_url"
+            android:title="@string/pref_title_sync_url"
+            android:singleLine="true"
+            android:maxLines="1"/>
+
+    <ListPreference
+            android:dependency="sync_url"
+            android:key="@string/preference_sync_frequency"
+            android:title="@string/pref_title_sync_frequency"
+            android:entries="@array/pref_sync_frequency_titles"
+            android:entryValues="@array/pref_sync_frequency_values"
+            android:defaultValue="180"
+            android:negativeButtonText="@null"
+            android:positiveButtonText="@null"/>
+
+    <SwitchPreference
+            android:dependency="sync_url"
+            android:key="sync_wifi_only"
+            android:title="@string/pref_title_sync_wifi_only"
+            android:defaultValue="false"/>
+
+    <Preference android:title="Account"
+                android:key="remove_account"
+                android:summary="user@example.com"/>
+
+</PreferenceScreen>

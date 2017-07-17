@@ -1,6 +1,6 @@
 ## Quasar Android
 
-Native Android Client for Quasar Wiki / Notes
+Native Android Client for [Quasar Wiki](https://github.com/okbreathe/quasar) / Notes
 
 **This is a work in progress**
 
